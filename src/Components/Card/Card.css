@@ -15,4 +15,11 @@
 .card:hover .poster {
   transform: scale(1.1);
   cursor: pointer;
+  border: 3px solid #C3E722;
+
+}
+
+.card .poster:focus {
+  outline: 3px solid #C3E722;
+  transform: scale(1.1);
 }

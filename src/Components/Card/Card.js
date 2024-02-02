@@ -12,7 +12,7 @@ const Card = ({ averageRating, backdropPath, id, key, releaseDate, title }) => {
 
   return (
     <div className='card'>
-      <div style={cardStyle} className='poster'></div>
+      <div style={cardStyle} className='poster' tabindex="0"></div>
       <p className='title'>{title}</p>
     </div>
   );
