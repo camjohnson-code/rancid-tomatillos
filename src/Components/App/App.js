@@ -5,17 +5,33 @@ import Carousel from '../Carousel/Carousel';
 import movieData from '../../Movie-test-data';
 import { useState } from 'react';
 
-function App() {
+const App = () => {
+  const [movies, setMovies] = useState(movieData.movies);
 
-  const [movies, setMovies] = useState(movieData.movies)
+  const getRandomMovies = (movies) => {
+    const randomMovies = movies.slice();
+
+    for (let i = randomMovies.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [randomMovies[i], randomMovies[j]] = [randomMovies[j], randomMovies[i]];
+    }
+    return randomMovies;
+  };
+
+  const popularMovies = movies
+    .slice()
+    .sort((a, b) => b.average_rating - a.average_rating)
+    .slice(0, 14);
+
+  const recommendedMovies = getRandomMovies(movies).slice(0, 14);
 
   return (
     <div className='App'>
       <h1>Rancid Tomatillos</h1>
-      <Carousel movies={movies} badge="Popular"/>
-      <Carousel movies={movies} badge="Recommended"/>
+      <Carousel movies={popularMovies} badge='Popular' />
+      <Carousel movies={recommendedMovies} badge='Recommended' />
     </div>
   );
-}
+};
 
 export default App;
