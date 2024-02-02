@@ -4,7 +4,7 @@ import Card from '../Card/Card';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-const MyCarousel = ({ movies }) => {
+const MyCarousel = ({ movies, badge }) => {
   const cardElements = movies.map((movie) => (
     <Card
       averageRating={movie.averageRating}
@@ -33,7 +33,8 @@ const MyCarousel = ({ movies }) => {
 
   const isMobile = window.innerWidth <= 464;
 
-  return (
+  return (<div>
+    <h2>{badge} Movies</h2>
     <Carousel
       className='carousel'
       swipeable={false}
@@ -54,6 +55,7 @@ const MyCarousel = ({ movies }) => {
     >
       {cardElements}
     </Carousel>
+    </div>
   );
 };
 

@@ -24,6 +24,20 @@
   color: white;
 }
 
+
+ h1 {
+  font-size: xxx-large;
+  padding-bottom: 0px;
+  color: #C3E722;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5), 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+p {
+   color: #eeeeee;
+   text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5), 5px 5px 5px rgba(0, 0, 0, 0.3);
+
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -36,3 +50,5 @@
     transform: rotate(360deg);
   }
 }
+
+

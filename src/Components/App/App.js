@@ -81,6 +81,7 @@ function App() {
     <div className='App'>
       <h1>Rancid Tomatillos</h1>
       <Carousel movies={movies} badge="Popular"/>
+      <Carousel movies={movies} badge="Recommended"/>
     </div>
   );
 }

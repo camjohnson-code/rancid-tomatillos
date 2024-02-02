@@ -1,4 +1,14 @@
 .carousel {
     margin-top: 20px;
     padding-top: 20px;
+    margin-bottom: 10px;
 }
+
+.badge, h2 {
+    color: #C3E722;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5), 5px 5px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    font-size: x-large;
+    font-weight: 600;
+    margin-left: 50px;
+  }
