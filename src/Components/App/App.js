@@ -2,9 +2,10 @@ import logo from '../../logo.svg';
 import './App.css';
 import Card from '../Card/Card';
 import Carousel from '../Carousel/Carousel';
+import { useState } from 'react';
 
 function App() {
-  const movies = [
+  const dummyData = [
     {
       id: 436270,
       poster_path:
@@ -76,6 +77,8 @@ function App() {
       release_date: '2022-06-17',
     },
   ];
+
+  const [movies, setMovies] = useState(dummyData)
 
   return (
     <div className='App'>

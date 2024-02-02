@@ -13,13 +13,14 @@ const MyCarousel = ({ movies, badge }) => {
       key={movie.id}
       releaseDate={movie.release_date}
       title={movie.title}
+      tabindex='0'
     />
   ));
 
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 5,
+      items: 6,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -33,28 +34,28 @@ const MyCarousel = ({ movies, badge }) => {
 
   const isMobile = window.innerWidth <= 464;
 
-  return (<div>
-    <h2>{badge} Movies</h2>
-    <Carousel
-      className='carousel'
-      swipeable={false}
-      draggable={true}
-      showDots={false}
-      responsive={responsive}
-      infinite={true}
-      autoPlay={isMobile ? true : false}
-      autoPlaySpeed={1000}
-      keyBoardControl={true}
-      customTransition='all .5'
-      transitionDuration={500}
-      containerClass='carousel-container'
-      removeArrowOnDeviceType={['tablet', 'mobile']}
-      deviceType={isMobile ? 'mobile' : 'desktop'}
-      dotListClass='custom-dot-list-style'
-      itemClass='carousel-item-padding-40-px'
-    >
-      {cardElements}
-    </Carousel>
+  return (
+    <div>
+      <h2>{badge} Movies</h2>
+      <Carousel
+        className='carousel'
+        swipeable={true}
+        draggable={true}
+        showDots={false}
+        responsive={responsive}
+        infinite={true}
+        autoPlay={false}
+        keyBoardControl={true}
+        customTransition='all 500ms ease-in-out'
+        transitionDuration={500}
+        containerClass='carousel-container'
+        removeArrowOnDeviceType={['tablet', 'mobile']}
+        deviceType={isMobile ? 'mobile' : 'desktop'}
+        dotListClass='custom-dot-list-style'
+        itemClass='carousel-item-padding-40-px'
+      >
+        {cardElements}
+      </Carousel>
     </div>
   );
 };
