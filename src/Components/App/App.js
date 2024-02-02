@@ -2,6 +2,7 @@ import logo from '../../logo.svg';
 import './App.css';
 import Card from '../Card/Card';
 import Carousel from '../Carousel/Carousel';
+import movieData from '../../Movie-test-data';
 import { useState } from 'react';
 
 function App() {
@@ -78,7 +79,7 @@ function App() {
     },
   ];
 
-  const [movies, setMovies] = useState(dummyData)
+  const [movies, setMovies] = useState(movieData.movies)
 
   return (
     <div className='App'>
