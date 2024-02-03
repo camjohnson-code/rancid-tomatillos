@@ -4,7 +4,7 @@ import Card from '../Card/Card';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-const MyCarousel = ({ movies, badge }) => {
+const MyCarousel = ({ movies, badge, setMovie, dummyMovie }) => {
   const cardElements = movies.map((movie) => (
     <Card
       averageRating={movie.averageRating}
@@ -13,6 +13,8 @@ const MyCarousel = ({ movies, badge }) => {
       key={movie.id}
       releaseDate={movie.release_date}
       title={movie.title}
+      setMovie={setMovie}
+      dummyMovie={dummyMovie}
     />
   ));
 

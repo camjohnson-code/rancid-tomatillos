@@ -5,9 +5,29 @@ import Carousel from '../Carousel/Carousel';
 import movieData from '../../Movie-test-data';
 import { useState } from 'react';
 import AllMovies from '../Movies Display/All-Movies';
+import SingleMoviePage from '../Single Movie Page/SingleMovie';
 
 const App = () => {
+  const dummyMovie = {
+    id: 1,
+    title: 'Fake Movie Title',
+    poster_path:
+      'https://image.tmdb.org/t/p/original//7G2VvG1lU8q758uOqU6z2Ds0qpA.jpg',
+    backdrop_path:
+      'https://image.tmdb.org/t/p/original//oazPqs1z78LcIOFslbKtJLGlueo.jpg',
+    release_date: '2019-12-04',
+    overview:
+      'Some overview that is full of buzzwords to attempt to entice you to watch this movie! Explosions! Drama! True love! Robots! A cute dog!',
+    average_rating: 6,
+    genres: ['Drama'],
+    budget: 63000000,
+    revenue: 100853753,
+    runtime: 139,
+    tagline: "It's a movie!",
+  };
+
   const [movies, setMovies] = useState(movieData.movies);
+  const [movie, setMovie] = useState('');
 
   const getRandomMovies = (movies) => {
     const randomMovies = movies.slice();
@@ -30,10 +50,44 @@ const App = () => {
 
   return (
     <div className='App'>
-      <h1 tabindex='0'>Rancid Tomatillos</h1>
-      <Carousel movies={popularMovies} badge='Popular' />
-      <Carousel movies={recommendedMovies} badge='Recommended' />
-      <AllMovies movies={allMovies} badge='All' />
+      {!movie && <h1 tabindex='0'>Rancid Tomatillos</h1>}
+      {movie && (
+        <SingleMoviePage
+          title={movie.title}
+          tagline={movie.tagline}
+          overview={movie.overview}
+          releaseDate={movie.release_date}
+          rating={movie.average_rating}
+          genres={movie.genres}
+          runtime={movie.runtime}
+          backdropPath={movie.backdrop_path}
+          setMovie={setMovie}
+        />
+      )}
+      {!movie && (
+        <Carousel
+          movies={popularMovies}
+          badge='Popular'
+          setMovie={setMovie}
+          dummyMovie={dummyMovie}
+        />
+      )}
+      {!movie && (
+        <Carousel
+          movies={recommendedMovies}
+          badge='Recommended'
+          setMovie={setMovie}
+          dummyMovie={dummyMovie}
+        />
+      )}
+      {!movie && (
+        <AllMovies
+          movies={allMovies}
+          badge='All'
+          setMovie={setMovie}
+          dummyMovie={dummyMovie}
+        />
+      )}
     </div>
   );
 };
