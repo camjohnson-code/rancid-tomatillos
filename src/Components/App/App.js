@@ -26,11 +26,11 @@ const App = () => {
 
   const recommendedMovies = getRandomMovies(movies).slice(0, 14);
 
-  const allMovies = movies
+  const allMovies = movies;
 
   return (
     <div className='App'>
-      <h1>Rancid Tomatillos</h1>
+      <h1 tabindex='0'>Rancid Tomatillos</h1>
       <Carousel movies={popularMovies} badge='Popular' />
       <Carousel movies={recommendedMovies} badge='Recommended' />
       <AllMovies movies={allMovies} badge='All' />

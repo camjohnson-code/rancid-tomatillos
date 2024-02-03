@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .title {
@@ -13,13 +14,12 @@
 }
 
 .card:hover .poster {
-  transform: scale(1.1);
+  transform: scale(1.05);
   cursor: pointer;
-  border: 3px solid #C3E722;
-
+  border: 3px solid #c3e722;
 }
 
 .card .poster:focus {
-  outline: 3px solid #C3E722;
-  transform: scale(1.1);
+  outline: 3px solid #c3e722;
+  transform: scale(1.05);
 }

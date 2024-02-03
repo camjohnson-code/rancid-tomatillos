@@ -13,7 +13,6 @@ const MyCarousel = ({ movies, badge }) => {
       key={movie.id}
       releaseDate={movie.release_date}
       title={movie.title}
-      tabindex='0'
     />
   ));
 
@@ -36,7 +35,7 @@ const MyCarousel = ({ movies, badge }) => {
 
   return (
     <div>
-      <h2>{badge} Movies</h2>
+      <h2 tabindex='0'>{badge} Movies</h2>
       <Carousel
         className='carousel'
         swipeable={true}

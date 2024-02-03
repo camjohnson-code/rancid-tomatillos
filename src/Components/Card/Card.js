@@ -7,13 +7,15 @@ const Card = ({ averageRating, backdropPath, id, key, releaseDate, title }) => {
     backgroundPosition: 'center',
     width: '200px',
     height: '300px',
-    borderRadius: '10px'
+    borderRadius: '10px',
   };
 
   return (
     <div className='card'>
-      <div style={cardStyle} className='poster' tabindex="0"></div>
-      <p className='title'>{title}</p>
+      <div style={cardStyle} className='poster'></div>
+      <p className='title' tabindex='0'>
+        {title}
+      </p>
     </div>
   );
 };
