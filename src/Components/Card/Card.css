@@ -1,0 +1,25 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.card .poster {
+  transition: transform 0.1s ease-in-out;
+}
+
+.card:hover .poster {
+  transform: scale(1.05);
+  cursor: pointer;
+  border: 3px solid #c3e722;
+}
+
+.card .poster:focus {
+  outline: 3px solid #c3e722;
+  transform: scale(1.05);
+}
