@@ -4,6 +4,7 @@ import Card from '../Card/Card';
 import Carousel from '../Carousel/Carousel';
 import movieData from '../../Movie-test-data';
 import { useState } from 'react';
+import AllMovies from '../Movies Display/All-Movies';
 
 const App = () => {
   const [movies, setMovies] = useState(movieData.movies);
@@ -25,11 +26,14 @@ const App = () => {
 
   const recommendedMovies = getRandomMovies(movies).slice(0, 14);
 
+  const allMovies = movies
+
   return (
     <div className='App'>
       <h1>Rancid Tomatillos</h1>
       <Carousel movies={popularMovies} badge='Popular' />
       <Carousel movies={recommendedMovies} badge='Recommended' />
+      <AllMovies movies={allMovies} badge='All' />
     </div>
   );
 };
