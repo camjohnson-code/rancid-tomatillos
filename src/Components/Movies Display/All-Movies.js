@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from '../Card/Card';
-import Carousel from 'react-multi-carousel';
 import movieData from '../../Movie-test-data';
 import 'react-multi-carousel/lib/styles.css';
 import "./All-Movies.css"
@@ -35,7 +34,7 @@ const AllMovies = ({ movies, badge }) => {
 
   const isMobile = window.innerWidth <= 464;
 
-  return (<div>
+  return (<div responsive={responsive} deviceType={isMobile ? 'mobile' : 'desktop'}>
     <hr></hr>
     <h2>{badge} Movies</h2>
     <div class="posterContainer">
