@@ -3,11 +3,42 @@ import './App.css';
 import Card from '../Card/Card';
 import Carousel from '../Carousel/Carousel';
 import movieData from '../../Movie-test-data';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AllMovies from '../Movies Display/All-Movies';
 
+const fetchData = (endPoint) => {
+  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/${endPoint}`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(`Successfully fetched data for ${endPoint}:`, data);
+      return data;
+    })
+    .catch((error) => {
+      console.error(`Error fetching data for ${endPoint}:`, error);
+      throw error;
+    });
+};
+
 const App = () => {
-  const [movies, setMovies] = useState(movieData.movies);
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const fetchDataFromApis = async () => {
+      try {
+        const movieEndpoint = 'movies'; 
+
+        const [movieResult] = await Promise.all([
+          fetchData(movieEndpoint)
+        ]);
+        setMovies(movieResult.movies);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchDataFromApis();
+  }, []); 
+  
 
   const getRandomMovies = (movies) => {
     const randomMovies = movies.slice();
