@@ -51,7 +51,7 @@ const App = () => {
 
   return (
     <div className='App'>
-      {!movie && <h1 tabindex='0'>Rancid Tomatillos</h1>}
+      {!movie && <h1 tabIndex='0'>Rancid Tomatillos</h1>}
       {movie && (
         <SingleMoviePage
           title={movie.title}

@@ -1,6 +1,6 @@
 import './Card.css';
 
-const Card = ({ averageRating, backdropPath, id, key, releaseDate, title, setMovie, dummyMovie }) => {
+const Card = ({ averageRating, backdropPath, id, releaseDate, title, setMovie, dummyMovie }) => {
   const cardStyle = {
     backgroundImage: `url(${backdropPath})`,
     backgroundSize: 'cover',
@@ -13,7 +13,7 @@ const Card = ({ averageRating, backdropPath, id, key, releaseDate, title, setMov
   return (
     <div className='card' onClick={() => setMovie(dummyMovie)}>
       <div style={cardStyle} className='poster'></div>
-      <p className='title' tabindex='0'>
+      <p className='title' tabIndex='0'>
         {title}
       </p>
     </div>

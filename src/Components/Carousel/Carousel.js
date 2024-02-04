@@ -37,7 +37,7 @@ const MyCarousel = ({ movies, badge, setMovie, dummyMovie }) => {
 
   return (
     <div>
-      <h2 tabindex='0'>{badge} Movies</h2>
+      <h2 tabIndex='0'>{badge} Movies</h2>
       <Carousel
         className='carousel'
         swipeable={true}
@@ -51,7 +51,7 @@ const MyCarousel = ({ movies, badge, setMovie, dummyMovie }) => {
         transitionDuration={500}
         containerClass='carousel-container'
         removeArrowOnDeviceType={['tablet', 'mobile']}
-        deviceType={isMobile ? 'mobile' : 'desktop'}
+        devicetype={isMobile ? 'mobile' : 'desktop'}
         dotListClass='custom-dot-list-style'
         itemClass='carousel-item-padding-40-px'
       >

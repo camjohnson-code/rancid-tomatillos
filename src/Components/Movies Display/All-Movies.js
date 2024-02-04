@@ -13,7 +13,7 @@ const AllMovies = ({ movies, badge, setMovie, dummyMovie }) => {
       key={movie.id}
       releaseDate={movie.release_date}
       title={movie.title}
-      tabindex='0'
+      tabIndex='0'
       setMovie={setMovie}
       dummyMovie={dummyMovie}
     />
@@ -36,11 +36,11 @@ const AllMovies = ({ movies, badge, setMovie, dummyMovie }) => {
 
   const isMobile = window.innerWidth <= 464;
 
-  return (<div responsive={responsive} deviceType={isMobile ? 'mobile' : 'desktop'}>
+  return (<div responsive={responsive} devicetype={isMobile ? 'mobile' : 'desktop'}>
     <hr></hr>
     <h2>{badge} Movies</h2>
-    <div class="posterContainer">
-      <card class="moviePosters">{cardElements}</card>
+    <div className="posterContainer">
+      <div className="moviePosters">{cardElements}</div>
     </div>
     </div>
   );
