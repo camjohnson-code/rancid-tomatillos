@@ -21,6 +21,7 @@ const fetchData = (endPoint) => {
 
 const App = () => {
   const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(true)
 
   useEffect(() => {
     const fetchDataFromApis = async () => {
@@ -32,7 +33,7 @@ const App = () => {
         ]);
         setMovies(movieResult.movies);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        setError(true);
       }
     };
 
@@ -62,6 +63,7 @@ const App = () => {
   return (
     <div className='App'>
       <h1 tabindex='0'>Rancid Tomatillos</h1>
+      {error && <h3>Oops! Please try again later.</h3>}
       <Carousel movies={popularMovies} badge='Popular' />
       <Carousel movies={recommendedMovies} badge='Recommended' />
       <AllMovies movies={allMovies} badge='All' />
