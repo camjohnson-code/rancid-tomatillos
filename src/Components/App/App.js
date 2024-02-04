@@ -21,7 +21,7 @@ const fetchData = (endPoint) => {
 
 const App = () => {
   const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const fetchDataFromApis = async () => {
