@@ -25,6 +25,7 @@ const App = () => {
     runtime: 139,
     tagline: "It's a movie!",
   };
+  
 
   const [movies, setMovies] = useState(movieData.movies);
   const [movie, setMovie] = useState('');
