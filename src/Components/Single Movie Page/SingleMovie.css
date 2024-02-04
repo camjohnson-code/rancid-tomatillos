@@ -1,0 +1,38 @@
+.single-movie {
+  height: 100vh;  
+  background-size: cover;
+  background-position: center;
+  overflow-y: hidden;
+  position: relative;
+  display: flex;
+}
+
+.x-button {
+    width: 25px;
+    height: auto;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+  }
+
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 25px;
+    width: 40%;
+    text-align: left;
+    margin-left: 45px;
+}
+
+.movie-title {
+  font-size: 36px;
+  margin: 0;
+}
+
+.overview {
+    font-weight: 700;
+}
