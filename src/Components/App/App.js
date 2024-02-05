@@ -3,7 +3,7 @@ import './App.css';
 import Card from '../Card/Card';
 import Carousel from '../Carousel/Carousel';
 import movieData from '../../Movie-test-data';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AllMovies from '../Movies Display/All-Movies';
 import SingleMoviePage from '../Single Movie Page/SingleMovie';
 
@@ -25,10 +25,25 @@ const App = () => {
     runtime: 139,
     tagline: "It's a movie!",
   };
-  
 
-  const [movies, setMovies] = useState(movieData.movies);
-  const [movie, setMovie] = useState('');
+  const [movies, setMovies] = useState([]); // all the movies
+  const [movie, setMovie] = useState(''); // single movie variable to set single movie page
+
+  useEffect(() => {
+    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
+      .then((response) => response.json())
+      .then((movies) => setMovies(movies.movies))
+      .catch((error) => console.error('Error fetching movies:', error));
+  }, []);
+
+  const updateSingleMovie = (id) => {
+    return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
+      .then((response) => response.json())
+      .then((movie) => {
+        setMovie(movie.movie);
+      })
+      .catch((error) => console.log(error));
+  };
 
   const getRandomMovies = (movies) => {
     const randomMovies = movies.slice();
@@ -40,14 +55,24 @@ const App = () => {
     return randomMovies;
   };
 
-  const popularMovies = movies
-    .slice()
-    .sort((a, b) => b.average_rating - a.average_rating)
-    .slice(0, 14);
+  const getPopularMovies = () => {
+    return movies
+      .slice()
+      .sort((a, b) => b.average_rating - a.average_rating)
+      .slice(0, 14);
+  };
 
-  const recommendedMovies = getRandomMovies(movies).slice(0, 14);
+  const getRecommendedMovies = () => {
+    return getRandomMovies(movies).slice(0, 14);
+  };
 
-  const allMovies = movies;
+  const getAllMovies = () => {
+    return movies;
+  };
+
+  const getSingleMovie = (id) => {
+    // Implementation for getSingleMovie
+  };
 
   return (
     <div className='App'>
@@ -67,26 +92,32 @@ const App = () => {
       )}
       {!movie && (
         <Carousel
-          movies={popularMovies}
+          movies={getPopularMovies()}
           badge='Popular'
           setMovie={setMovie}
           dummyMovie={dummyMovie}
+          allMovies={movies}
+          updateSingleMovie={updateSingleMovie}
         />
       )}
       {!movie && (
         <Carousel
-          movies={recommendedMovies}
+          movies={getRecommendedMovies()}
           badge='Recommended'
           setMovie={setMovie}
           dummyMovie={dummyMovie}
+          allMovies={movies}
+          updateSingleMovie={updateSingleMovie}
         />
       )}
       {!movie && (
         <AllMovies
-          movies={allMovies}
+          movies={getAllMovies()}
           badge='All'
           setMovie={setMovie}
           dummyMovie={dummyMovie}
+          allMovies={movies}
+          updateSingleMovie={updateSingleMovie}
         />
       )}
     </div>

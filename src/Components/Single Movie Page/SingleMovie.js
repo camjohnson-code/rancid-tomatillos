@@ -25,10 +25,14 @@ const SingleMoviePage = ({
   };
 
   const formatRuntime = (runtime) => {
-    const hours = Math.floor(runtime / 60)
-    const minutes = runtime % 60
-    return `${hours} hours ${minutes} minutes`
-  }
+    const hours = Math.floor(runtime / 60);
+    const minutes = runtime % 60;
+    return `${hours} hours ${minutes} minutes`;
+  };
+
+  const formatGenres = (genres) => {
+    return genres.join(', ');
+  };
 
   return (
     <div className='single-movie' style={movieStyle}>
@@ -41,7 +45,7 @@ const SingleMoviePage = ({
         <p>
           <FaStar /> {rating} / 10
         </p>
-        <p>{genres}</p>
+        <p>{formatGenres(genres)}</p>
         <p>{formatRuntime(runtime)}</p>
       </div>
     </div>

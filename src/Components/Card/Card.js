@@ -1,6 +1,17 @@
 import './Card.css';
 
-const Card = ({ averageRating, backdropPath, id, releaseDate, title, setMovie, dummyMovie }) => {
+const Card = ({
+  movies,
+  averageRating,
+  backdropPath,
+  id,
+  releaseDate,
+  title,
+  setMovie,
+  dummyMovie,
+  allMovies,
+  updateSingleMovie
+}) => {
   const cardStyle = {
     backgroundImage: `url(${backdropPath})`,
     backgroundSize: 'cover',
@@ -11,8 +22,17 @@ const Card = ({ averageRating, backdropPath, id, releaseDate, title, setMovie, d
   };
 
   return (
-    <div className='card' onClick={() => setMovie(dummyMovie)}>
-      <div style={cardStyle} className='poster'></div>
+    <div className='card'>
+      <div
+        style={cardStyle}
+        className='poster'
+        onClick={(event) => {
+          const movieID = allMovies.find(
+            (movie) => movie.title === event.target.nextElementSibling.innerText
+          ).id;
+          updateSingleMovie(movieID);
+        }}
+      ></div>
       <p className='title' tabIndex='0'>
         {title}
       </p>
