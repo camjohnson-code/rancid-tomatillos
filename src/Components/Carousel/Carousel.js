@@ -3,6 +3,7 @@ import './Carousel.css';
 import Card from '../Card/Card';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import PropTypes from 'prop-types';
 
 const MyCarousel = ({ movies, badge, setMovie, allMovies, updateSingleMovie }) => {
   const cardElements = movies.map((movie) => (
@@ -63,3 +64,7 @@ const MyCarousel = ({ movies, badge, setMovie, allMovies, updateSingleMovie }) =
 };
 
 export default MyCarousel;
+
+MyCarousel.PropTypes = {
+  badge: PropTypes.string.isRequired
+}
