@@ -10,12 +10,13 @@ import SingleMoviePage from '../Single Movie Page/SingleMovie';
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [movie, setMovie] = useState('');
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
       .then((response) => response.json())
       .then((movies) => setMovies(movies.movies))
-      .catch((error) => console.error('Error fetching movies:', error));
+      .catch((error) => setError(true));
   }, []);
 
   const updateSingleMovie = (id) => {
@@ -24,7 +25,7 @@ const App = () => {
       .then((movie) => {
         setMovie(movie.movie);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setError(true));
   };
 
   const getRandomMovies = (movies) => {
@@ -52,13 +53,10 @@ const App = () => {
     return movies;
   };
 
-  const getSingleMovie = (id) => {
-    // Implementation for getSingleMovie
-  };
-
   return (
     <div className='App'>
       {!movie && <h1 tabIndex='0'>Rancid Tomatillos</h1>}
+      {error && <h3 className='error'>Oops! Please try again later.</h3>}
       {movie && (
         <SingleMoviePage
           title={movie.title}
