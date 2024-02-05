@@ -8,7 +8,6 @@ const Card = ({
   releaseDate,
   title,
   setMovie,
-  dummyMovie,
   allMovies,
   updateSingleMovie
 }) => {
