@@ -2,6 +2,7 @@ import './SingleMovie.css';
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
 import { IoCloseCircle } from 'react-icons/io5';
+import PropTypes from 'prop-types';
 
 const SingleMoviePage = ({
   title,
@@ -53,3 +54,16 @@ const SingleMoviePage = ({
 };
 
 export default SingleMoviePage;
+
+
+SingleMoviePage.propTypes = {
+  title: PropTypes.string.isRequired,
+  tagline: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  releaseDate: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  genres: PropTypes.array.isRequired,
+  runtime: PropTypes.number.isRequired,
+  backdropPath: PropTypes.string.isRequired,
+  setMovie: PropTypes.func.isRequired,
+}

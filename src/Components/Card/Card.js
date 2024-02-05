@@ -1,4 +1,5 @@
 import './Card.css';
+import PropTypes from 'prop-types';
 
 const Card = ({
   movies,
@@ -43,9 +44,9 @@ export default Card;
 
 Card.propTypes = {
   movies: PropTypes.array.isRequired,
-  averageRating: PropTypes.num.isRequired,
+  averageRating: PropTypes.number.isRequired,
   backdropPath: PropTypes.string.isRequired,
-  id: PropTypes.num.isRequired,
+  id: PropTypes.number.isRequired,
   releaseDate: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   setMovie: PropTypes.func.isRequired,
