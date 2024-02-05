@@ -2,9 +2,16 @@ import React from 'react';
 import Card from '../Card/Card';
 import movieData from '../../Movie-test-data';
 import 'react-multi-carousel/lib/styles.css';
-import "./All-Movies.css"
+import './All-Movies.css';
+import PropTypes from 'prop-types';
 
-const AllMovies = ({ movies, badge, setMovie, dummyMovie }) => {
+const AllMovies = ({
+  movies,
+  badge,
+  setMovie,
+  allMovies,
+  updateSingleMovie,
+}) => {
   const cardElements = movies.map((movie) => (
     <Card
       averageRating={movie.averageRating}
@@ -15,7 +22,9 @@ const AllMovies = ({ movies, badge, setMovie, dummyMovie }) => {
       title={movie.title}
       tabIndex='0'
       setMovie={setMovie}
-      dummyMovie={dummyMovie}
+      movies={movies}
+      allMovies={allMovies}
+      updateSingleMovie={updateSingleMovie}
     />
   ));
 
@@ -36,14 +45,23 @@ const AllMovies = ({ movies, badge, setMovie, dummyMovie }) => {
 
   const isMobile = window.innerWidth <= 464;
 
-  return (<div responsive={responsive} devicetype={isMobile ? 'mobile' : 'desktop'}>
-    <hr></hr>
-    <h2>{badge} Movies</h2>
-    <div className="posterContainer">
-      <div className="moviePosters">{cardElements}</div>
-    </div>
+  return (
+    <div responsive={responsive} devicetype={isMobile ? 'mobile' : 'desktop'}>
+      <hr></hr>
+      <h2>{badge} Movies</h2>
+      <div className='posterContainer'>
+        <div className='moviePosters'>{cardElements}</div>
+      </div>
     </div>
   );
 };
 
 export default AllMovies;
+
+AllMovies.propTypes = {
+  movies: PropTypes.array.isRequired,
+  badge: PropTypes.string.isRequired,
+  setMovie: PropTypes.func.isRequired,
+  allMovies: PropTypes.array.isRequired,
+  updateSingleMovie: PropTypes.func.isRequired,
+};

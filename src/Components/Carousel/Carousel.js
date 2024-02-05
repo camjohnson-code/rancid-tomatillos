@@ -3,8 +3,15 @@ import './Carousel.css';
 import Card from '../Card/Card';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import PropTypes from 'prop-types';
 
-const MyCarousel = ({ movies, badge, setMovie, dummyMovie }) => {
+const MyCarousel = ({
+  movies,
+  badge,
+  setMovie,
+  allMovies,
+  updateSingleMovie,
+}) => {
   const cardElements = movies.map((movie) => (
     <Card
       averageRating={movie.averageRating}
@@ -14,7 +21,8 @@ const MyCarousel = ({ movies, badge, setMovie, dummyMovie }) => {
       releaseDate={movie.release_date}
       title={movie.title}
       setMovie={setMovie}
-      dummyMovie={dummyMovie}
+      allMovies={allMovies}
+      updateSingleMovie={updateSingleMovie}
     />
   ));
 
@@ -62,3 +70,7 @@ const MyCarousel = ({ movies, badge, setMovie, dummyMovie }) => {
 };
 
 export default MyCarousel;
+
+MyCarousel.propTypes = {
+  badge: PropTypes.string.isRequired,
+};

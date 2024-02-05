@@ -1,6 +1,17 @@
 import './Card.css';
+import PropTypes from 'prop-types';
 
-const Card = ({ averageRating, backdropPath, id, releaseDate, title, setMovie, dummyMovie }) => {
+const Card = ({
+  movies,
+  averageRating,
+  backdropPath,
+  id,
+  releaseDate,
+  title,
+  setMovie,
+  allMovies,
+  updateSingleMovie,
+}) => {
   const cardStyle = {
     backgroundImage: `url(${backdropPath})`,
     backgroundSize: 'cover',
@@ -11,8 +22,17 @@ const Card = ({ averageRating, backdropPath, id, releaseDate, title, setMovie, d
   };
 
   return (
-    <div className='card' onClick={() => setMovie(dummyMovie)}>
-      <div style={cardStyle} className='poster'></div>
+    <div className='card'>
+      <div
+        style={cardStyle}
+        className='poster'
+        onClick={(event) => {
+          const movieID = allMovies.find(
+            (movie) => movie.title === event.target.nextElementSibling.innerText
+          ).id;
+          updateSingleMovie(movieID);
+        }}
+      ></div>
       <p className='title' tabIndex='0'>
         {title}
       </p>
@@ -21,3 +41,15 @@ const Card = ({ averageRating, backdropPath, id, releaseDate, title, setMovie, d
 };
 
 export default Card;
+
+Card.propTypes = {
+  movies: PropTypes.array.isRequired,
+  averageRating: PropTypes.number,
+  backdropPath: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  releaseDate: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  setMovie: PropTypes.func.isRequired,
+  allMovies: PropTypes.array.isRequired,
+  updateSingleMovie: PropTypes.func.isRequired,
+};
