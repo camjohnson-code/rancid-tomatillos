@@ -9,7 +9,7 @@ const Card = ({
   title,
   setMovie,
   allMovies,
-  updateSingleMovie
+  updateSingleMovie,
 }) => {
   const cardStyle = {
     backgroundImage: `url(${backdropPath})`,
@@ -40,3 +40,15 @@ const Card = ({
 };
 
 export default Card;
+
+Card.propTypes = {
+  movies: PropTypes.array.isRequired,
+  averageRating: PropTypes.num.isRequired,
+  backdropPath: PropTypes.string.isRequired,
+  id: PropTypes.num.isRequired,
+  releaseDate: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  setMovie: PropTypes.func.isRequired,
+  allMovies: PropTypes.array.isRequired,
+  updateSingleMovie: PropTypes.func.isRequired,
+};
