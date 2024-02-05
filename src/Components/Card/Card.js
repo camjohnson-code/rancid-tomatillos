@@ -44,7 +44,7 @@ export default Card;
 
 Card.propTypes = {
   movies: PropTypes.array.isRequired,
-  averageRating: PropTypes.number.isRequired,
+  averageRating: PropTypes.number,
   backdropPath: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   releaseDate: PropTypes.string.isRequired,
