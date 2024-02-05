@@ -43,7 +43,7 @@ const Card = ({
 export default Card;
 
 Card.propTypes = {
-  movies: PropTypes.array.isRequired,
+  movies: PropTypes.array,
   averageRating: PropTypes.number,
   backdropPath: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,

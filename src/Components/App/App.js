@@ -50,7 +50,7 @@ const App = () => {
   };
 
   const getAllMovies = () => {
-    return movies;
+    return movies.sort((a, b) => a.title.localeCompare(b.title));
   };
 
   return (
