@@ -38,16 +38,16 @@ const SingleMoviePage = ({
   return (
     <div className='single-movie' style={movieStyle}>
       <div className='movie-info'>
-        <IoCloseCircle className='x-button' onClick={() => setMovie('')} />
+        <button className='x-button'><IoCloseCircle className='close-icon' onClick={() => setMovie('')} /></button>
         <h2 className='movie-title'>{title}</h2>
-        <p>{tagline}</p>
+        <p className='tagline'>{tagline}</p>
         <p className='overview'>{overview}</p>
-        <p>{formatDate(releaseDate)}</p>
-        <p>
+        <p className='release-date'>{formatDate(releaseDate)}</p>
+        <p className='rating'>
           <FaStar /> {rating} / 10
         </p>
-        <p>{formatGenres(genres)}</p>
-        <p>{formatRuntime(runtime)}</p>
+        <p className='genres'>{formatGenres(genres)}</p>
+        <p className='runtime'>{formatRuntime(runtime)}</p>
       </div>
     </div>
   );

@@ -55,7 +55,7 @@ const App = () => {
 
   return (
     <div className='App'>
-      {!movie && <h1 tabIndex='0'>Rancid Tomatillos</h1>}
+      {!movie && <h1 tabIndex='0' className='title'>Rancid Tomatillos</h1>}
       {error && <h3 className='error'>Oops! Please try again later.</h3>}
       {movie && (
         <SingleMoviePage
@@ -73,7 +73,7 @@ const App = () => {
       {!movie && (
         <Carousel
           movies={getPopularMovies()}
-          badge='Popular'
+          badge='popular'
           setMovie={setMovie}
           allMovies={movies}
           updateSingleMovie={updateSingleMovie}
@@ -82,7 +82,7 @@ const App = () => {
       {!movie && (
         <Carousel
           movies={getRecommendedMovies()}
-          badge='Recommended'
+          badge='recommended'
           setMovie={setMovie}
           allMovies={movies}
           updateSingleMovie={updateSingleMovie}
@@ -91,7 +91,7 @@ const App = () => {
       {!movie && (
         <AllMovies
           movies={getAllMovies()}
-          badge='All'
+          badge='all'
           setMovie={setMovie}
           allMovies={movies}
           updateSingleMovie={updateSingleMovie}

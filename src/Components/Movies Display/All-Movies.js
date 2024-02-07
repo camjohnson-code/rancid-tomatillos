@@ -48,7 +48,7 @@ const AllMovies = ({
   return (
     <div responsive={responsive} devicetype={isMobile ? 'mobile' : 'desktop'}>
       <hr></hr>
-      <h2>{badge} Movies</h2>
+      <h2 className={`${badge}Movies`}>{badge.charAt(0).toUpperCase() + badge.slice(1)} Movies</h2>
       <div className='posterContainer'>
         <div className='moviePosters'>{cardElements}</div>
       </div>

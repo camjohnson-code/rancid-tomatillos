@@ -7,14 +7,21 @@
   display: flex;
 }
 
+.close-icon {
+  height: 25px;
+  width: auto;
+}
+
 .x-button {
     width: 25px;
     height: auto;
     color: white;
     cursor: pointer;
     position: absolute;
-    right: 20px;
-    top: 10px;
+    right: 40px;
+    top: 20px;
+    border: none;
+    background-color: transparent;
   }
 
 .movie-info {
