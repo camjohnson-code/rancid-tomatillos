@@ -1,5 +1,7 @@
 import './Card.css';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 
 const Card = ({
   movies,
@@ -23,6 +25,7 @@ const Card = ({
 
   return (
     <div className='card'>
+         <Link to={`/movie/${id}`}>
       <div
         style={cardStyle}
         className='poster'
@@ -36,6 +39,7 @@ const Card = ({
       <p className='title' tabIndex='0'>
         {title}
       </p>
+    </Link>
     </div>
   );
 };
