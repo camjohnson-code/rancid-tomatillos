@@ -1,28 +1,26 @@
 import './SingleMovie.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { IoCloseCircle } from 'react-icons/io5';
 import PropTypes from 'prop-types';
+import { useParams, useNavigate } from 'react-router-dom';
 
-const SingleMoviePage = ({
-  title,
-  tagline,
-  overview,
-  releaseDate,
-  rating,
-  genres,
-  runtime,
-  backdropPath,
-  setMovie,
-}) => {
-  const movieStyle = {
-    backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8) 50%, transparent), url(${backdropPath})`,
-  };
+const SingleMoviePage = ({ setMovie }) => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [movie, setMovieDetails] = useState(null);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
+      .then(response => response.json())
+      .then(data => setMovieDetails(data.movie))
+      .catch(() => setError(true));
+  }, [id]);
 
   const formatDate = (date) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = new Date(date).toLocaleDateString(undefined, options);
-    return formattedDate;
+    return new Date(date).toLocaleDateString(undefined, options);
   };
 
   const formatRuntime = (runtime) => {
@@ -32,38 +30,37 @@ const SingleMoviePage = ({
   };
 
   const formatGenres = (genres) => {
-    return genres.join(', ');
+    return genres ? genres.join(', ') : '';
   };
 
+  const handleGoBack = () => {
+    setMovieDetails(null);
+    navigate('/')
+  };
+
+  if (error) {
+    return <h3 className='error'>Oops! Please try again later.</h3>;
+  }
+
+
   return (
-    <div className='single-movie' style={movieStyle}>
+    <div className='single-movie' style={{ backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8) 50%, transparent), url(${movie?.backdrop_path})` }}>
       <div className='movie-info'>
-        <button className='x-button'><IoCloseCircle className='close-icon' onClick={() => setMovie('')} /></button>
-        <h2 className='movie-title'>{title}</h2>
-        <p className='tagline'>{tagline}</p>
-        <p className='overview'>{overview}</p>
-        <p className='release-date'>{formatDate(releaseDate)}</p>
-        <p className='rating'>
-          <FaStar /> {rating} / 10
-        </p>
-        <p className='genres'>{formatGenres(genres)}</p>
-        <p className='runtime'>{formatRuntime(runtime)}</p>
+        <button className='x-button'><IoCloseCircle className='close-icon' onClick={handleGoBack} /></button>
+        <h2 className='movie-title'>{movie?.title}</h2>
+        <p className='tagline'>{movie?.tagline}</p>
+        <p className='overview'>{movie?.overview}</p>
+        <p className='release-date'>{formatDate(movie?.release_date)}</p>
+        <p className='rating'><FaStar /> {movie?.average_rating} / 10</p>
+        <p className='genres'>{formatGenres(movie?.genres)}</p>
+        <p className='runtime'>{formatRuntime(movie?.runtime)}</p>
       </div>
     </div>
   );
 };
 
-export default SingleMoviePage;
-
-
 SingleMoviePage.propTypes = {
-  title: PropTypes.string.isRequired,
-  tagline: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired,
-  releaseDate: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  genres: PropTypes.array.isRequired,
-  runtime: PropTypes.number.isRequired,
-  backdropPath: PropTypes.string.isRequired,
-  setMovie: PropTypes.func.isRequired,
-}
+  setMovie: PropTypes.func,
+};
+
+export default SingleMoviePage;
