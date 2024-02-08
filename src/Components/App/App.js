@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import AllMovies from '../Movies Display/All-Movies';
 import SingleMoviePage from '../Single Movie Page/SingleMovie';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import NotFound from '../Not Found Page/NotFound';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -54,45 +55,48 @@ const App = () => {
     return movies.sort((a, b) => a.title.localeCompare(b.title));
   };
 
+
   return (
     <div className='App'>
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <>
-              <h1 tabIndex='0'>Rancid Tomatillos</h1>
-              {error && (
-                <h3 className='error'>Oops! Please try again later.</h3>
-              )}
-              <Carousel
-                movies={getPopularMovies()}
-                badge='Popular'
-                setMovie={() => {}}
-                allMovies={movies}
-                updateSingleMovie={updateSingleMovie}
-              />
-              <Carousel
-                movies={getRecommendedMovies()}
-                badge='Recommended'
-                setMovie={() => {}}
-                allMovies={movies}
-                updateSingleMovie={updateSingleMovie}
-              />
-              <AllMovies
-                movies={getAllMovies()}
-                badge='All'
-                setMovie={() => {}}
-                allMovies={movies}
-                updateSingleMovie={updateSingleMovie}
-              />
-            </>
-          }
-        />
-        <Route path='/movie/:id' element={<SingleMoviePage />} />
-      </Routes>
-    </div>
-  );
+    <Routes>
+      <Route
+        path='/'
+        element={
+          <>
+            <h1 tabIndex='0'>Rancid Tomatillos</h1>
+            {error && (
+              <h3 className='error'>Oops! Please try again later.</h3>
+            )}
+            <Carousel
+              movies={getPopularMovies()}
+              badge='Popular'
+              setMovie={() => {}}
+              allMovies={movies}
+              updateSingleMovie={updateSingleMovie}
+            />
+            <Carousel
+              movies={getRecommendedMovies()}
+              badge='Recommended'
+              setMovie={() => {}}
+              allMovies={movies}
+              updateSingleMovie={updateSingleMovie}
+            />
+            <AllMovies
+              movies={getAllMovies()}
+              badge='All'
+              setMovie={() => {}}
+              allMovies={movies}
+              updateSingleMovie={updateSingleMovie}
+            />
+          </>
+        }
+      />
+      <Route path='/movie/:id' element={<SingleMoviePage />} />
+      <Route path="*" element={<NotFound />} /> 
+    </Routes>
+  </div>
+);
 };
+
 
 export default App;
