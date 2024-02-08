@@ -56,37 +56,42 @@ const App = () => {
 
   return (
     <div className='App'>
-    <Routes>
-      <Route path="/" element={
-        <>
-          <h1 tabIndex='0'>Rancid Tomatillos</h1>
-          {error && <h3 className='error'>Oops! Please try again later.</h3>}
-          <Carousel
-            movies={getPopularMovies()}
-            badge='Popular'
-            setMovie={() => {}}
-            allMovies={movies}
-            updateSingleMovie={updateSingleMovie}
-          />
-          <Carousel
-            movies={getRecommendedMovies()}
-            badge='Recommended'
-            setMovie={() => {}}
-            allMovies={movies}
-            updateSingleMovie={updateSingleMovie}
-          />
-          <AllMovies
-            movies={getAllMovies()}
-            badge='All'
-            setMovie={() => {}}
-            allMovies={movies}
-            updateSingleMovie={updateSingleMovie}
-          />
-        </>
-      } />
-      <Route path="/movie/:id" element={<SingleMoviePage />} />
-    </Routes>
-  </div>
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <>
+              <h1 tabIndex='0'>Rancid Tomatillos</h1>
+              {error && (
+                <h3 className='error'>Oops! Please try again later.</h3>
+              )}
+              <Carousel
+                movies={getPopularMovies()}
+                badge='Popular'
+                setMovie={() => {}}
+                allMovies={movies}
+                updateSingleMovie={updateSingleMovie}
+              />
+              <Carousel
+                movies={getRecommendedMovies()}
+                badge='Recommended'
+                setMovie={() => {}}
+                allMovies={movies}
+                updateSingleMovie={updateSingleMovie}
+              />
+              <AllMovies
+                movies={getAllMovies()}
+                badge='All'
+                setMovie={() => {}}
+                allMovies={movies}
+                updateSingleMovie={updateSingleMovie}
+              />
+            </>
+          }
+        />
+        <Route path='/movie/:id' element={<SingleMoviePage />} />
+      </Routes>
+    </div>
   );
 };
 
