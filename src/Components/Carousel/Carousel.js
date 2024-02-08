@@ -4,6 +4,7 @@ import Card from '../Card/Card';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import PropTypes from 'prop-types';
+import LoadingCard from '../Loading Card/LoadingCard';
 
 const MyCarousel = ({
   movies,
@@ -25,6 +26,24 @@ const MyCarousel = ({
       updateSingleMovie={updateSingleMovie}
     />
   ));
+
+  const loadingCards = [
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+  ];
 
   const responsive = {
     desktop: {
@@ -63,7 +82,7 @@ const MyCarousel = ({
         dotListClass='custom-dot-list-style'
         itemClass='carousel-item-padding-40-px'
       >
-        {cardElements}
+        {movies.length > 0 ? cardElements : loadingCards}
       </Carousel>
     </div>
   );
