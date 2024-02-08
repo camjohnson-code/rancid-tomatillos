@@ -4,6 +4,7 @@ import movieData from '../../Movie-test-data';
 import 'react-multi-carousel/lib/styles.css';
 import './All-Movies.css';
 import PropTypes from 'prop-types';
+import LoadingCard from '../Loading Card/LoadingCard';
 
 const AllMovies = ({
   movies,
@@ -28,29 +29,21 @@ const AllMovies = ({
     />
   ));
 
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 6,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 3,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
-
-  const isMobile = window.innerWidth <= 464;
+  const loadingCards = [
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+    <LoadingCard />,
+  ];
 
   return (
-    <div responsive={responsive} devicetype={isMobile ? 'mobile' : 'desktop'}>
+    <div>
       <hr></hr>
       <h2>{badge} Movies</h2>
       <div className='posterContainer'>
-        <div className='moviePosters'>{cardElements}</div>
+        <div className='moviePosters'>{movies ? cardElements : loadingCards}</div>
       </div>
     </div>
   );
