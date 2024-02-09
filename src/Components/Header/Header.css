@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+}
+
+ul {
+  display: flex;
+}
+
+.header-item {
+  color: rgba(255, 255, 255, 0.5);
+  list-style-type: none;
+  margin: 0 10px;
+}
+
+.right-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-header,
+.left-header {
+  padding: 0;
+}
+
+.sign-out-button {
+  cursor: pointer;
+}
