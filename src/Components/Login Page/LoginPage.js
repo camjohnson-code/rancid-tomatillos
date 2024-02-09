@@ -29,11 +29,6 @@ const LoginPage = ({ setUser }) => {
         setUser(data.user);
         clearInputs();
         return navigate('/movies');
-
-        // notes for logging out:
-        // redirect to '/'
-        // setUser('')
-        // '/movies' authorization -> only allow viewing it if user state has value, otherwise render unauthorized component
       })
       .catch((error) => {
         setSuccessfulLogin(false);
@@ -77,7 +72,9 @@ const LoginPage = ({ setUser }) => {
         {!successfulLogin && (
           <p>Incorrect email or password. Please try again.</p>
         )}
-        <button type='submit'>Submit</button>
+        <button className='submit-button' type='submit'>
+          Submit
+        </button>
       </form>
     </div>
   );

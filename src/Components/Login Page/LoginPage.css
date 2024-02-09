@@ -33,11 +33,11 @@ input:last-of-type {
   margin-bottom: 50px;
 }
 
-button {
+.submit-button {
   border: none;
 }
 
-button,
+.submit-button,
 input {
   height: 35px;
   width: 100%;
