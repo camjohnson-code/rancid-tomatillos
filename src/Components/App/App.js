@@ -15,7 +15,6 @@ const App = () => {
   const [movie, setMovie] = useState('');
   const [error, setError] = useState(false);
   const [user, setUser] = useState('');
-  const [successfulLogin, setSuccessfulLogin] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -62,7 +61,12 @@ const App = () => {
   return (
     <div className='App'>
       <Routes>
-        <Route path='/' element={<LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} />} />
+        <Route
+          path='/'
+          element={
+            <LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
+          }
+        />
         <Route
           path='/movies'
           element={

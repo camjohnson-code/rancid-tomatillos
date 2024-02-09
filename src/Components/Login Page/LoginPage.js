@@ -3,9 +3,10 @@ import React from 'react';
 import { useState } from 'react';
 import { Navigate, redirect, useNavigate } from 'react-router-dom';
 
-const LoginPage = ({ setUser, setSuccessfulLogin }) => {
+const LoginPage = ({ setUser }) => {
   const [password, setPassword] = useState('');
   const [title, setTitle] = useState('');
+  const [successfulLogin, setSuccessfulLogin] = useState(true);
   const navigate = useNavigate();
 
   const getUser = () => {
