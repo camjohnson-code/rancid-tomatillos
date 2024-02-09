@@ -8,6 +8,7 @@ import AllMovies from '../Movies Display/All-Movies';
 import SingleMoviePage from '../Single Movie Page/SingleMovie';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import NotFound from '../Not Found Page/NotFound';
+import SearchBar from '../Search Bar/SearchBar';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -64,6 +65,7 @@ const App = () => {
         element={
           <>
             <h1 tabIndex='0'>Rancid Tomatillos</h1>
+            <SearchBar movies={movies} />
             {error && (
               <h3 className='error'>Oops! Please try again later.</h3>
             )}
@@ -93,6 +95,7 @@ const App = () => {
       />
       <Route path='/movie/:id' element={<SingleMoviePage />} />
       <Route path="*" element={<NotFound />} /> 
+      <Route path='' element={<SearchBar /> } />
     </Routes>
   </div>
 );
