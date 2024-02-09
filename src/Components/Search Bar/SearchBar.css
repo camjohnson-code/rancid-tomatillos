@@ -1,4 +1,18 @@
-.search-bar {}
+ input {
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        text-indent: 10px;
+        width: 400px;
+        height: 25px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        background-color: transparent;
+        color: #C3E722;
+      }
+      
+      input:last-of-type {
+        margin-bottom: 50px;
+      }
+
 
 .search-results{
     display: flex;

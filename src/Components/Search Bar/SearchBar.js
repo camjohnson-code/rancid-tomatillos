@@ -3,7 +3,7 @@ import './SearchBar.css';
 import Card from '../Card/Card';
 import { Link } from 'react-router-dom';
 
-const SearchBar = ({ movies, setMovie, allMovies, updateSingleMovie }) => {
+const SearchBar = ({ movies, setMovie, updateSingleMovie }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredMovies, setFilteredMovies] = useState([]);
 
@@ -36,14 +36,9 @@ const SearchBar = ({ movies, setMovie, allMovies, updateSingleMovie }) => {
                         releaseDate={movie.release_date}
                         title={movie.title}
                         setMovie={setMovie}
-                        allMovies={allMovies}
+                        allMovies={movies}
                         updateSingleMovie={updateSingleMovie}
-                        onClick={(event) => {
-                            const movieID = allMovies.find(
-                              (movie) => movie.title === event.target.nextElementSibling.innerText
-                            ).id;
-                            updateSingleMovie(movieID);
-                          }}/> 
+                          /> 
                     </Link>
                 ))}
             </div>
