@@ -13,8 +13,8 @@ const SingleMoviePage = ({ setMovie }) => {
 
   useEffect(() => {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
-      .then(response => response.json())
-      .then(data => setMovieDetails(data.movie))
+      .then((response) => response.json())
+      .then((data) => setMovieDetails(data.movie))
       .catch(() => setError(true));
   }, [id]);
 
@@ -35,23 +35,29 @@ const SingleMoviePage = ({ setMovie }) => {
 
   const handleGoBack = () => {
     setMovieDetails(null);
-    navigate('/movies')
+    navigate('/movies');
   };
 
   if (error) {
     return <h3 className='error'>Oops! Please try again later.</h3>;
   }
 
-
   return (
-    <div className='single-movie' style={{ backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8) 50%, transparent), url(${movie?.backdrop_path})` }}>
+    <div
+      className='single-movie'
+      style={{
+        backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8) 50%, transparent), url(${movie?.backdrop_path})`,
+      }}
+    >
       <div className='movie-info'>
         <IoCloseCircle className='x-button' onClick={handleGoBack} />
         <h2 className='movie-title'>{movie?.title}</h2>
         <p>{movie?.tagline}</p>
         <p className='overview'>{movie?.overview}</p>
         <p>{formatDate(movie?.release_date)}</p>
-        <p><FaStar /> {movie?.average_rating} / 10</p>
+        <p>
+          <FaStar /> {movie?.average_rating} / 10
+        </p>
         <p>{formatGenres(movie?.genres)}</p>
         <p>{formatRuntime(movie?.runtime)}</p>
       </div>

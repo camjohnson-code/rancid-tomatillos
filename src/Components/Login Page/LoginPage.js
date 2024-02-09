@@ -1,4 +1,5 @@
 import './LoginPage.css';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -80,3 +81,7 @@ const LoginPage = ({ setUser }) => {
 };
 
 export default LoginPage;
+
+LoginPage.propTypes = {
+  setUser: PropTypes.func.isRequired,
+};
