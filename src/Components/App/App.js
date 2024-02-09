@@ -9,6 +9,7 @@ import SingleMoviePage from '../Single Movie Page/SingleMovie';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import NotFound from '../Not Found Page/NotFound';
 import LoginPage from '../Login Page/LoginPage';
+import Header from '../Header/Header';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -16,6 +17,7 @@ const App = () => {
   const [error, setError] = useState(false);
   const [user, setUser] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
@@ -58,6 +60,10 @@ const App = () => {
     return movies.sort((a, b) => a.title.localeCompare(b.title));
   };
 
+  const returnToLogin = () => {
+    return navigate('/');
+  };
+
   return (
     <div className='App'>
       <Routes>
@@ -69,9 +75,16 @@ const App = () => {
         />
         <Route
           path='/movies'
-          element={
+          element={ user ?
             <>
-              <h1 tabIndex='0'>Rancid Tomatillos</h1>
+              <Header
+                name={user.name}
+                returnToLogin={returnToLogin}
+                setUser={setUser}
+              />
+              <h1 className='title' tabIndex='0'>
+                Rancid Tomatillos
+              </h1>
               {error && (
                 <h3 className='error'>Oops! Please try again later.</h3>
               )}
@@ -96,7 +109,7 @@ const App = () => {
                 allMovies={movies}
                 updateSingleMovie={updateSingleMovie}
               />
-            </>
+            </> : <NotFound />
           }
         />
         <Route path='/movie/:id' element={<SingleMoviePage />} />

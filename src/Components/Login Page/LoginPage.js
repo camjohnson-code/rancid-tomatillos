@@ -1,7 +1,7 @@
 import './LoginPage.css';
 import React from 'react';
 import { useState } from 'react';
-import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = ({ setUser }) => {
   const [password, setPassword] = useState('');
@@ -25,7 +25,6 @@ const LoginPage = ({ setUser }) => {
         }
       })
       .then((data) => {
-        console.log('Logged in:', data.user);
         setUser(data.user);
         clearInputs();
         return navigate('/movies');

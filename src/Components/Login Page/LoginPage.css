@@ -35,6 +35,7 @@ input:last-of-type {
 
 .submit-button {
   border: none;
+  cursor: pointer;
 }
 
 .submit-button,
