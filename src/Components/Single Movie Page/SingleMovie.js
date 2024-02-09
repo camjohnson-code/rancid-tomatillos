@@ -35,7 +35,7 @@ const SingleMoviePage = ({ setMovie }) => {
 
   const handleGoBack = () => {
     setMovieDetails(null);
-    navigate('/')
+    navigate('/movies')
   };
 
   if (error) {
