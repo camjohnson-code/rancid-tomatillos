@@ -1,0 +1,16 @@
+{
+    "movie": {
+      "id": 760204,
+      "title": "The Lair",
+      "poster_path": "https://image.tmdb.org/t/p/original//ifRFLx83Xk1DcwAS3OScgI6HmWO.jpg",
+      "backdrop_path": "https://image.tmdb.org/t/p/original//fMymfWwgTfXh9RkBCFuaZrdn8Of.jpg",
+      "release_date": "2022-10-28",
+      "overview": "Royal Air Force pilot Lt. Kate Sinclair is on her final flight mission when her jet is shot down over one of the most dangerous rebel strongholds in Afghanistan. She finds refuge in an abandoned underground bunker where deadly man-made creatures known as Ravagers — half-human, half-alien, and hungry for human flesh — are awakened.",
+      "genres": ["Action", "Horror"],
+      "budget": 0,
+      "revenue": 0,
+      "runtime": 93,
+      "tagline": "Unlocked. Unleashed.",
+      "average_rating": 9
+    }
+  }
