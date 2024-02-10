@@ -112,7 +112,7 @@ const App = () => {
             </> : <NotFound />
           }
         />
-        <Route path='/movie/:id' element={<SingleMoviePage />} />
+        <Route path='/movie/:id' element={<SingleMoviePage user={user} movies={movies} />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
