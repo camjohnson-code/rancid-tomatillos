@@ -3,20 +3,111 @@ import React, { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { IoCloseCircle } from 'react-icons/io5';
 import PropTypes from 'prop-types';
+import { Rating } from 'react-simple-star-rating';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const SingleMoviePage = ({ setMovie }) => {
+const SingleMoviePage = ({ user, movies }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [movie, setMovieDetails] = useState(null);
   const [error, setError] = useState(false);
+  const [ratingError, setRatingError] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [userRatings, setUserRatings] = useState([]);
 
   useEffect(() => {
+    getMovieDetails();
+    getUserRatings();
+  }, [id]);
+
+  useEffect(() => {
+    if (userRatings.length) updateMovieRating();
+  }, [movie, userRatings]);
+
+  const getMovieDetails = () => {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
       .then((response) => response.json())
       .then((data) => setMovieDetails(data.movie))
       .catch(() => setError(true));
-  }, [id]);
+  };
+
+  const getUserRatings = () => {
+    fetch(
+      `https://rancid-tomatillos.herokuapp.com/api/v2/users/${user.id}/ratings`
+    )
+      .then((response) => response.json())
+      .then((ratings) => {
+        setUserRatings(ratings.ratings);
+      })
+      .catch((error) => {
+        setError(true);
+      });
+  };
+
+  const postUserRating = (rating) => {
+    const existingRating = userRatings.find(
+      (film) => film.movie_id === movie.id
+    );
+
+    if (existingRating) {
+      fetch(
+        `https://rancid-tomatillos.herokuapp.com/api/v2/users/${user.id}/ratings/${existingRating.id}`,
+        {
+          method: 'DELETE',
+        }
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to delete existing rating');
+          }
+          return postNewRating(rating);
+        })
+        .catch((error) => {
+          setRatingError(true);
+          setRating(0);
+        });
+    } else postNewRating(rating);
+  };
+
+  const postNewRating = (rating) => {
+    fetch(
+      `https://rancid-tomatillos.herokuapp.com/api/v2/users/${user.id}/ratings`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          movie_id: movie.id,
+          rating: parseInt(rating),
+        }),
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then((text) => {
+            throw new Error(`Failed to post rating: ${text}`);
+          });
+        }
+        return response.json();
+      })
+      .then((ratings) => {
+        getUserRatings();
+      })
+      .catch((error) => {
+        setRatingError(true);
+        setRating(0);
+      });
+  };
+
+  const updateMovieRating = () => {
+    if (movie)
+      userRatings.forEach((film) => {
+        if (film.movie_id === movie.id) {
+          setRating(film.rating / 2);
+        }
+      });
+  };
 
   const formatDate = (date) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -38,9 +129,12 @@ const SingleMoviePage = ({ setMovie }) => {
     navigate('/movies');
   };
 
-  if (error) {
-    return <h3 className='error'>Oops! Please try again later.</h3>;
-  }
+  const handleRating = async (rate: number) => {
+    setRating(rate);
+    await postUserRating(rate * 2);
+  };
+
+  if (error) return <h3 className='error'>Oops! Please try again later.</h3>;
 
   return (
     <div
@@ -52,6 +146,13 @@ const SingleMoviePage = ({ setMovie }) => {
       <div className='movie-info'>
         <IoCloseCircle className='x-button' onClick={handleGoBack} />
         <h2 className='movie-title'>{movie?.title}</h2>
+        <Rating
+          initialValue={rating}
+          className='stars'
+          onClick={handleRating}
+          allowFraction={true}
+        />
+        {ratingError && <p>Something went wrong! Please try again later.</p>}
         <p>{movie?.tagline}</p>
         <p className='overview'>{movie?.overview}</p>
         <p>{formatDate(movie?.release_date)}</p>
@@ -66,7 +167,8 @@ const SingleMoviePage = ({ setMovie }) => {
 };
 
 SingleMoviePage.propTypes = {
-  setMovie: PropTypes.func,
+  user: PropTypes.object.isRequired,
+  movies: PropTypes.array.isRequired,
 };
 
 export default SingleMoviePage;
