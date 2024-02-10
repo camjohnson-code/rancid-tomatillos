@@ -5,16 +5,29 @@ describe('It should test the application', () => {
       fixture: '/sample-data.json',
     });
     cy.visit('/');
+    cy.get('input:first-of-type').click().type('sam@turing.io')
+      cy.get('input:last-of-type').click().type('123456')
+      cy.get('button').click()
   });
 
   describe('Home Page Initial Load', () => {
-    it('should be able to see the main header on the home page', () => {
+    it('should have a header with the users name and a sign out button', () => {
+      cy.get('header')
+      .get('li:first-of-type').should('contain', 'Hi, Sam!')
+      .get('li:last-of-type').should('contain', 'Sign Out')
+    });
+
+    it('should be able to see the title on the home page', () => {
       cy.get('.title').should('contain', 'Rancid Tomatillos');
     });
 
+    it('should have a search bar', () => {
+      cy.get("input[placeholder=\"Search for a movie...\"]")
+    });
+
     it('should have a Popular and Recommended movies section', () => {
-      cy.get('.popular-movies').should('contain', 'Popular Movies');
-      cy.get('.recommended-movies').should('contain', 'Recommended Movies');
+      cy.get('.Popular-movies').should('contain', 'Popular Movies');
+      cy.get('.Recommended-movies').should('contain', 'Recommended Movies');
     });
 
     it('should have the All Movies section listed alphabetically', () => {
@@ -61,11 +74,10 @@ describe('It should test the application', () => {
     it('should return to the home page when the X button is clicked', () => {
       cy.get('.x-button')
         .click()
-        .get('h1')
-        .should('contain', 'Rancid Tomatillos');
+        .url().should('eq', 'http://localhost:3000/movies');
     });
   });
-  describe('Clicking on first movie in All Movies for more information', () => {
+  describe('Clicking on last movie in All Movies for more information', () => {
     beforeEach(() => {
       cy.intercept(
         'https://rancid-tomatillos.herokuapp.com/api/v2/movies/760104',
@@ -102,8 +114,7 @@ describe('It should test the application', () => {
     it('should return to the home page when the X button is clicked', () => {
       cy.get('.x-button')
         .click()
-        .get('h1')
-        .should('contain', 'Rancid Tomatillos');
+        .url().should('eq', 'http://localhost:3000/movies');
     });
   });
 });
