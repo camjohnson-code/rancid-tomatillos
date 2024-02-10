@@ -1,3 +1,4 @@
+
 import logo from '../../logo.svg';
 import './App.css';
 import Card from '../Card/Card';
@@ -8,6 +9,7 @@ import AllMovies from '../Movies Display/All-Movies';
 import SingleMoviePage from '../Single Movie Page/SingleMovie';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import NotFound from '../Not Found Page/NotFound';
+import SearchBar from '../Search Bar/SearchBar';
 import LoginPage from '../Login Page/LoginPage';
 import Header from '../Header/Header';
 
@@ -85,6 +87,12 @@ const App = () => {
               <h1 className='title' tabIndex='0'>
                 Rancid Tomatillos
               </h1>
+              <SearchBar movies={movies}
+            badge='Search Results'
+            updateSingleMovie={updateSingleMovie} />
+            {error && (
+              <h3 className='error'>Oops! Please try again later.</h3>
+            )}
               {error && (
                 <h3 className='error'>Oops! Please try again later.</h3>
               )}
@@ -114,9 +122,11 @@ const App = () => {
         />
         <Route path='/movie/:id' element={<SingleMoviePage user={user} movies={movies} />} />
         <Route path='*' element={<NotFound />} />
+        <Route path='' element={<SearchBar /> } />
       </Routes>
     </div>
   );
 };
 
 export default App;
+
