@@ -7,7 +7,6 @@ import { Rating } from 'react-simple-star-rating';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const SingleMoviePage = ({ user, movies }) => {
-  console.log(user);
   const { id } = useParams();
   const navigate = useNavigate();
   const [movie, setMovieDetails] = useState(null);
@@ -20,6 +19,10 @@ const SingleMoviePage = ({ user, movies }) => {
     getMovieDetails();
     getUserRatings();
   }, [id]);
+
+  useEffect(() => {
+    if (userRatings.length) updateMovieRating();
+  }, [movie, userRatings]);
 
   const getMovieDetails = () => {
     fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
@@ -35,12 +38,38 @@ const SingleMoviePage = ({ user, movies }) => {
       .then((response) => response.json())
       .then((ratings) => {
         setUserRatings(ratings.ratings);
-        updateMovieRating();
       })
-      .catch(() => setError(true));
+      .catch((error) => {
+        setError(true);
+      });
   };
 
   const postUserRating = (rating) => {
+    const existingRating = userRatings.find(
+      (film) => film.movie_id === movie.id
+    );
+
+    if (existingRating) {
+      fetch(
+        `https://rancid-tomatillos.herokuapp.com/api/v2/users/${user.id}/ratings/${existingRating.id}`,
+        {
+          method: 'DELETE',
+        }
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to delete existing rating');
+          }
+          return postNewRating(rating);
+        })
+        .catch((error) => {
+          setRatingError(true);
+          setRating(0);
+        });
+    } else postNewRating(rating);
+  };
+
+  const postNewRating = (rating) => {
     fetch(
       `https://rancid-tomatillos.herokuapp.com/api/v2/users/${user.id}/ratings`,
       {
@@ -62,8 +91,8 @@ const SingleMoviePage = ({ user, movies }) => {
         }
         return response.json();
       })
-      .then((data) => {
-        console.log('Rating successfully posted:', data.rating);
+      .then((ratings) => {
+        getUserRatings();
       })
       .catch((error) => {
         setRatingError(true);
@@ -72,9 +101,12 @@ const SingleMoviePage = ({ user, movies }) => {
   };
 
   const updateMovieRating = () => {
-    userRatings.map((film) => {
-      if (film.id === movie.id) setRating(film.rating);
-    });
+    if (movie)
+      userRatings.forEach((film) => {
+        if (film.movie_id === movie.id) {
+          setRating(film.rating / 2);
+        }
+      });
   };
 
   const formatDate = (date) => {
@@ -114,7 +146,12 @@ const SingleMoviePage = ({ user, movies }) => {
       <div className='movie-info'>
         <IoCloseCircle className='x-button' onClick={handleGoBack} />
         <h2 className='movie-title'>{movie?.title}</h2>
-        <Rating className='stars' onClick={handleRating} allowFraction={true} />
+        <Rating
+          initialValue={rating}
+          className='stars'
+          onClick={handleRating}
+          allowFraction={true}
+        />
         {ratingError && <p>Something went wrong! Please try again later.</p>}
         <p>{movie?.tagline}</p>
         <p className='overview'>{movie?.overview}</p>
