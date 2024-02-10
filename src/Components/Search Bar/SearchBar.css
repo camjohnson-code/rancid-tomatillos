@@ -1,28 +1,31 @@
  input {
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        text-indent: 10px;
-        width: 400px;
-        height: 25px;
-        margin-top: 10px;
-        margin-bottom: 20px;
-        background-color: transparent;
-        color: #C3E722;
-      }
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    text-indent: 10px;
+    width: 400px;
+    height: 25px;
+    margin-top: 10px;
+    background-color: transparent;
+    color: #C3E722;
+ }
       
-      input:last-of-type {
-        margin-bottom: 50px;
-      }
-
 
 .search-results{
     display: flex;
-    margin-left: 0;
+    margin-left: 0px;
     flex-direction: row;
     justify-content: center;
 }
 
-.Card {
+.card {
+    margin: 20px;
     margin-top: 20px;
-    padding-top: 20px;
     margin-bottom: 20px;
+}
+
+p .title {
+    text-decoration: none;
+}
+
+.card p {
+    text-decoration: none;
 }

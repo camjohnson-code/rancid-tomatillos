@@ -19,8 +19,14 @@
   width: 170px;
 }
 
+.card p:focus {
+  width: 170px;
+  text-decoration: none;
+}
+
 .title {
   font-weight: 700;
+  text-decoration: none;
 }
 
 .card .poster {
