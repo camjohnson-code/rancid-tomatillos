@@ -4,6 +4,18 @@ describe('It should test the application', () => {
       statusCode: 200,
       fixture: '/sample-data.json',
     });
+    cy.intercept(
+      'POST',
+      'https://rancid-tomatillos.herokuapp.com/api/v2/login',
+      {
+        statusCode: 201,
+        fixture: '/user-login.json',
+      }
+    ).as('loginSuccess');
+    cy.intercept('https://rancid-tomatillos.herokuapp.com/api/v2/users/2/ratings', {
+      statusCode: 200,
+      fixture: '/user-ratings.json',
+    });
     cy.visit('/');
     cy.get('input:first-of-type').click().type('sam@turing.io')
       cy.get('input:last-of-type').click().type('123456')
