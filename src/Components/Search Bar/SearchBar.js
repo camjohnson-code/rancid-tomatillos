@@ -3,7 +3,7 @@ import './SearchBar.css';
 import Card from '../Card/Card';
 import { Link } from 'react-router-dom';
 
-const SearchBar = ({ movies, setMovie, updateSingleMovie }) => {
+const SearchBar = ({ movies, setMovie, updateSingleMovie, badge }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredMovies, setFilteredMovies] = useState([]);
 
@@ -26,24 +26,27 @@ const SearchBar = ({ movies, setMovie, updateSingleMovie }) => {
                 onChange={handleSearch}
             />
             <div className="search-results">
+                {searchQuery.length > 0 && <h2 className="search-title" tabIndex='0'>{badge}</h2>}
                 {searchQuery && filteredMovies.length === 0 && (
                     <p>No results found</p>
                 )}
-                {searchQuery && filteredMovies.map(movie => (
-                    <Link to={`/movie/${movie.id}`} key={movie.id}>
-                        <Card 
-                            averageRating={movie.averageRating}
-                            backdropPath={movie.backdrop_path}
-                            id={movie.id}
-                            key={movie.id}
-                            releaseDate={movie.release_date}
-                            title={movie.title}
-                            setMovie={setMovie}
-                            allMovies={movies}
-                            updateSingleMovie={updateSingleMovie}
-                        /> 
-                    </Link>
-                ))}
+                <div className="movie-cards-container">
+                    {searchQuery && filteredMovies.map(movie => (
+                        <Link to={`/movie/${movie.id}`} key={movie.id}>
+                            <Card 
+                                averageRating={movie.averageRating}
+                                backdropPath={movie.backdrop_path}
+                                id={movie.id}
+                                key={movie.id}
+                                releaseDate={movie.release_date}
+                                title={movie.title}
+                                setMovie={setMovie}
+                                allMovies={movies}
+                                updateSingleMovie={updateSingleMovie}
+                            /> 
+                        </Link>
+                    ))}
+                </div>
             </div>
         </div>
     );

@@ -66,6 +66,7 @@ const App = () => {
           <>
             <h1 tabIndex='0'>Rancid Tomatillos</h1>
             <SearchBar movies={movies}
+            badge='Search Results'
             updateSingleMovie={updateSingleMovie} />
             {error && (
               <h3 className='error'>Oops! Please try again later.</h3>
