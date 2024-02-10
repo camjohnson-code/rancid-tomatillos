@@ -1,0 +1,46 @@
+ input {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    text-indent: 10px;
+    width: 400px;
+    height: 25px;
+    margin-top: 10px;
+    background-color: transparent;
+    color: #C3E722;
+ }
+      
+
+ .search-results a {
+    text-decoration: none;
+}
+
+.search-title {
+    display: flex;
+}
+
+.search-results{
+    display: flex;
+    margin-left: 0px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card {
+    margin: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+p .title {
+    text-decoration: none;
+}
+
+.movie-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.movie-cards-container > * {
+    margin: 10px;
+    flex: 1 0 200px; /* Adjust the width as needed */
+}

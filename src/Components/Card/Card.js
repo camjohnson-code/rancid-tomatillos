@@ -4,13 +4,9 @@ import { Link } from 'react-router-dom';
 
 
 const Card = ({
-  movies,
-  averageRating,
   backdropPath,
   id,
-  releaseDate,
   title,
-  setMovie,
   allMovies,
   updateSingleMovie,
 }) => {
