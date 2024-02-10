@@ -1,3 +1,4 @@
+
 import logo from '../../logo.svg';
 import './App.css';
 import Card from '../Card/Card';
@@ -16,6 +17,9 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [movie, setMovie] = useState('');
   const [error, setError] = useState(false);
+  const [user, setUser] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
@@ -58,11 +62,14 @@ const App = () => {
     return movies.sort((a, b) => a.title.localeCompare(b.title));
   };
 
+  const returnToLogin = () => {
+    return navigate('/');
+  };
 
   return (
     <div className='App'>
-    <Routes>
-    <Route
+      <Routes>
+        <Route
           path='/'
           element={
             <LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
@@ -77,45 +84,48 @@ const App = () => {
                 returnToLogin={returnToLogin}
                 setUser={setUser}
               />
-          <>
-            <h1 tabIndex='0'>Rancid Tomatillos</h1>
-            <SearchBar movies={movies}
+              <h1 className='title' tabIndex='0'>
+                Rancid Tomatillos
+              </h1>
+              <SearchBar movies={movies}
             badge='Search Results'
             updateSingleMovie={updateSingleMovie} />
             {error && (
               <h3 className='error'>Oops! Please try again later.</h3>
             )}
-            <Carousel
-              movies={getPopularMovies()}
-              badge='Popular'
-              setMovie={() => {}}
-              allMovies={movies}
-              updateSingleMovie={updateSingleMovie}
-            />
-            <Carousel
-              movies={getRecommendedMovies()}
-              badge='Recommended'
-              setMovie={() => {}}
-              allMovies={movies}
-              updateSingleMovie={updateSingleMovie}
-            />
-            <AllMovies
-              movies={getAllMovies()}
-              badge='All'
-              setMovie={() => {}}
-              allMovies={movies}
-              updateSingleMovie={updateSingleMovie}
-            />
-          </>
-        }
-      />
-      <Route path='/movie/:id' element={<SingleMoviePage />} />
-      <Route path="*" element={<NotFound />} /> 
-      <Route path='' element={<SearchBar /> } />
-    </Routes>
-  </div>
-);
+              {error && (
+                <h3 className='error'>Oops! Please try again later.</h3>
+              )}
+              <Carousel
+                movies={getPopularMovies()}
+                badge='Popular'
+                setMovie={() => {}}
+                allMovies={movies}
+                updateSingleMovie={updateSingleMovie}
+              />
+              <Carousel
+                movies={getRecommendedMovies()}
+                badge='Recommended'
+                setMovie={() => {}}
+                allMovies={movies}
+                updateSingleMovie={updateSingleMovie}
+              />
+              <AllMovies
+                movies={getAllMovies()}
+                badge='All'
+                setMovie={() => {}}
+                allMovies={movies}
+                updateSingleMovie={updateSingleMovie}
+              />
+            </> : <NotFound />
+          }
+        />
+        <Route path='/movie/:id' element={<SingleMoviePage user={user} movies={movies} />} />
+        <Route path='*' element={<NotFound />} />
+        <Route path='' element={<SearchBar /> } />
+      </Routes>
+    </div>
+  );
 };
-
 
 export default App;
