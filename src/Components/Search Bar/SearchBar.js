@@ -19,7 +19,7 @@ const SearchBar = ({ movies, setMovie, updateSingleMovie, badge }) => {
 
     return (
         <div className='SearchBar'>
-            <input
+            <input className='search-input'
                 type="text"
                 placeholder="Search for a movie..."
                 value={searchQuery}
