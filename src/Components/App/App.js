@@ -9,6 +9,8 @@ import SingleMoviePage from '../Single Movie Page/SingleMovie';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import NotFound from '../Not Found Page/NotFound';
 import SearchBar from '../Search Bar/SearchBar';
+import LoginPage from '../Login Page/LoginPage';
+import Header from '../Header/Header';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -60,9 +62,21 @@ const App = () => {
   return (
     <div className='App'>
     <Routes>
-      <Route
-        path='/'
-        element={
+    <Route
+          path='/'
+          element={
+            <LoginPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
+          }
+        />
+        <Route
+          path='/movies'
+          element={ user ?
+            <>
+              <Header
+                name={user.name}
+                returnToLogin={returnToLogin}
+                setUser={setUser}
+              />
           <>
             <h1 tabIndex='0'>Rancid Tomatillos</h1>
             <SearchBar movies={movies}
