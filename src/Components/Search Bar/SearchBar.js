@@ -26,19 +26,22 @@ const SearchBar = ({ movies, setMovie, updateSingleMovie }) => {
                 onChange={handleSearch}
             />
             <div className="search-results">
-                {filteredMovies.map(movie => (
+                {searchQuery && filteredMovies.length === 0 && (
+                    <p>No results found</p>
+                )}
+                {searchQuery && filteredMovies.map(movie => (
                     <Link to={`/movie/${movie.id}`} key={movie.id}>
                         <Card 
-                        averageRating={movie.averageRating}
-                        backdropPath={movie.backdrop_path}
-                        id={movie.id}
-                        key={movie.id}
-                        releaseDate={movie.release_date}
-                        title={movie.title}
-                        setMovie={setMovie}
-                        allMovies={movies}
-                        updateSingleMovie={updateSingleMovie}
-                          /> 
+                            averageRating={movie.averageRating}
+                            backdropPath={movie.backdrop_path}
+                            id={movie.id}
+                            key={movie.id}
+                            releaseDate={movie.release_date}
+                            title={movie.title}
+                            setMovie={setMovie}
+                            allMovies={movies}
+                            updateSingleMovie={updateSingleMovie}
+                        /> 
                     </Link>
                 ))}
             </div>
