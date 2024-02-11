@@ -11,7 +11,7 @@ Rancid Tomatillos is a project aimed at building a web application that provides
 ## Features
 - Browse a vast database of movies.
 - View detailed information about each movie, including ratings, reviews, cast, and crew.
-- Search functionality to find movies by genre or title quickly.
+- Search functionality to find movies by title quickly.
 - User authentication and authorization for personalized experiences.
 - The ability to give ratings to a movie you've seen
 
@@ -50,6 +50,7 @@ In the future, we'd like to improve the site by adding these features:
 - Enable cookies so the user stays logged in after page refresh
 - Add page transition animations between the main page and movie info
 - Add a "load more" button in the All Movies section and only display a few rows of movies on page load
+- Search results can be filtered by Genre 
 - Deploy this app to a live page
 
 #### Acknowledgements
