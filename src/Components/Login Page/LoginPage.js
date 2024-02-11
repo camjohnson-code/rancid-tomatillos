@@ -70,7 +70,7 @@ const LoginPage = ({ setUser }) => {
           required
         ></input>
         {!successfulLogin && (
-          <p>Incorrect email or password. Please try again.</p>
+          <p className='error-message'>Incorrect email or password. Please try again.</p>
         )}
         <button className='submit-button' type='submit'>
           Submit

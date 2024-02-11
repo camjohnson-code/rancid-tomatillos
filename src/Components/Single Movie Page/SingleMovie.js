@@ -129,7 +129,7 @@ const SingleMoviePage = ({ user, movies }) => {
     navigate('/movies');
   };
 
-  const handleRating = async (rate: number) => {
+  const handleRating = async (rate) => {
     setRating(rate);
     await postUserRating(rate * 2);
   };
@@ -144,7 +144,7 @@ const SingleMoviePage = ({ user, movies }) => {
       }}
     >
       <div className='movie-info'>
-        <IoCloseCircle className='x-button' onClick={handleGoBack} />
+        <button className='x-button'><IoCloseCircle className='close-icon' onClick={handleGoBack} /></button>
         <h2 className='movie-title'>{movie?.title}</h2>
         <Rating
           initialValue={rating}
@@ -153,14 +153,14 @@ const SingleMoviePage = ({ user, movies }) => {
           allowFraction={true}
         />
         {ratingError && <p>Something went wrong! Please try again later.</p>}
-        <p>{movie?.tagline}</p>
+        <p className='tagline'>{movie?.tagline}</p>
         <p className='overview'>{movie?.overview}</p>
-        <p>{formatDate(movie?.release_date)}</p>
-        <p>
+        <p className='release-date'>{formatDate(movie?.release_date)}</p>
+        <p className='rating'>
           <FaStar /> {movie?.average_rating} / 10
         </p>
-        <p>{formatGenres(movie?.genres)}</p>
-        <p>{formatRuntime(movie?.runtime)}</p>
+        <p className='genres'>{formatGenres(movie?.genres)}</p>
+        <p className='runtime'>{formatRuntime(movie?.runtime)}</p>
       </div>
     </div>
   );

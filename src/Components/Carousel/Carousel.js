@@ -64,7 +64,7 @@ const MyCarousel = ({
 
   return (
     <div>
-      <h2 tabIndex='0'>{badge} Movies</h2>
+      <h2 tabIndex='0' className={`${badge}-movies`} >{badge.charAt(0).toUpperCase() + badge.slice(1)} Movies</h2>
       <Carousel
         className='carousel'
         swipeable={true}
