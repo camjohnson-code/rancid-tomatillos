@@ -1,7 +1,7 @@
 # Rancid Tomatillos
 ![App demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeno0MjdqaGVyZ3NienZrYmg5NHBzZ2xiZmdmbGtmbjhkdGMxdjNoYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/da9gMZejWsm40UGPuM/giphy.gif)
 
-Rancid Tomatillos is a project aimed at building a web application that provides information about movies, including ratings, reviews, and other related data. This project utilizes [insert technologies or frameworks used, e.g., React, Node.js, etc.] to create a user-friendly interface for browsing movies and accessing relevant information.
+Rancid Tomatillos is a project aimed at building a web application that provides information about movies, including ratings, reviews, and other related data. This project utilizes React and React Router to create a user-friendly interface for browsing movies and accessing relevant information.
 
 ## Contributors
 
@@ -50,7 +50,6 @@ In the future, we'd like to improve the site by adding these features:
 - Enable cookies so the user stays logged in after page refresh
 - Add page transition animations between the main page and movie info
 - Add a "load more" button in the All Movies section and only display a few rows of movies on page load
-- Search results can be filtered by Genre 
 - Deploy this app to a live page
 
 #### Acknowledgements
